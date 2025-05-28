@@ -271,22 +271,33 @@ body {
 .popup-close:hover {
   color: #007bff;
 }
-.seo-block {
-  background: linear-gradient(135deg, #cce0ff 0%, #e6f2ff 100%);
-  background-image:
-    url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><text x="10" y="50" font-size="30" fill="rgba(0, 75, 153, 0.1)">💰📈</text></svg>');
-  background-repeat: repeat;
-  border-radius: 10px;
-  padding: 25px 30px;
-  color: #003366;
-}
+/* Tło na całą stronę, ale pod warstwą z zawartością */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: #003366;
-  background: linear-gradient(135deg, #1a3c72 0%, #2a5298 100%);
-  background-image: url('https://cdn.pixabay.com/photo/2016/11/29/03/53/finance-1869768_960_720.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
+  position: relative; /* ważne, żeby divy miały normalny flow */
+  z-index: 1;
+  background: none; /* wyłączamy background body, bo tło jest w tle */
+}
+
+/* Tło za zawartością - fixed, pełny ekran */
+.background-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0; /* niżej niż wszystko inne */
+  background: linear-gradient(135deg, #a3c1ff 0%, #d3e4ff 100%);
+  background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><line x1="10" y1="90" x2="90" y2="10" stroke="rgba(0,75,153,0.1)" stroke-width="2"/><polygon points="85,15 90,10 95,15" fill="rgba(0,75,153,0.1)"/></svg>');
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  pointer-events: none; /* żeby tło nie przeszkadzało w klikaniu */
+}
+
+/* Zawartość ma wyższy indeks */
+.main-layout {
+  position: relative;
+  z-index: 1;
 }
