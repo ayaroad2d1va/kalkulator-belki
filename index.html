@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kalkulatory finansowe</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -11,9 +11,9 @@
   <h1 class="page-title">Kalkulatory finansowe</h1>
 
   <div class="main-layout">
+
     <div class="left-panel">
-      <!-- Kalkulator podatku Belki -->
-      <div class="calculator">
+      <div class="calculator fadeInUp" id="calc-belka">
         <h2>Kalkulator podatku Belki</h2>
 
         <label for="kwota">Kwota inwestycji (PLN):
@@ -32,8 +32,7 @@
         <div id="wynik"></div>
       </div>
 
-      <!-- Kalkulator oszczędności -->
-      <div class="calculator">
+      <div class="calculator fadeInUp" id="calc-oszczednosci">
         <h2>Kalkulator oszczędności</h2>
 
         <label for="miesieczna-wplata">Miesięczna wpłata (PLN):
@@ -52,8 +51,7 @@
         <div id="wynik-oszczednosci"></div>
       </div>
 
-      <!-- Kalkulator raty kredytu -->
-      <div class="calculator">
+      <div class="calculator fadeInUp" id="calc-kredyt">
         <h2>Kalkulator raty kredytu</h2>
 
         <label for="kwota-kredytu">Kwota kredytu (PLN):
@@ -74,18 +72,24 @@
     </div>
 
     <div class="middle-panel">
-      <section class="seo-texts">
-        <h2>Podatek Belki - co warto wiedzieć?</h2>
+      <div class="seo-block fadeIn" id="seo-belka">
+        <h3>Podatek Belki - co warto wiedzieć?</h3>
         <p>Podatek Belki to podatek od zysków kapitałowych, który wynosi 19%. Dotyczy odsetek z lokat bankowych, funduszy inwestycyjnych, giełdy i innych inwestycji.</p>
         <p>Nasze kalkulatory pomogą Ci szybko obliczyć należny podatek oraz oszczędności czy raty kredytów.</p>
-        <h2>Jak oszczędzać efektywnie?</h2>
+      </div>
+
+      <div class="seo-block fadeIn" id="seo-oszczednosci">
+        <h3>Jak oszczędzać efektywnie?</h3>
         <p>Regularne oszczędzanie z kapitalizacją odsetek pozwala zbudować solidny kapitał. Pamiętaj, że czas to Twój sprzymierzeniec — im dłużej oszczędzasz, tym większy zysk.</p>
-        <h2>Kredyty i finansowanie</h2>
+      </div>
+
+      <div class="seo-block fadeIn" id="seo-kredyt">
+        <h3>Kredyty i finansowanie</h3>
         <p>Planowanie rat kredytów jest ważne, aby nie obciążać domowego budżetu. Nasz kalkulator raty kredytu pozwoli Ci ocenić, ile zapłacisz co miesiąc.</p>
-      </section>
+      </div>
     </div>
 
-    <div class="right-panel">
+    <div class="right-panel fadeIn">
       <h2>Sprawdź oferty inwestycyjne:</h2>
       <div class="partner-links">
         <div class="partner">
@@ -108,6 +112,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <script src="script.js"></script>
