@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kalkulatory finansowe</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
@@ -50,81 +50,121 @@
         <button onclick="obliczOszczednosci()">Oblicz</button>
         <div id="wynik-oszczednosci"></div>
       </div>
-
-      <div class="calculator fadeInUp" id="calc-kredyt">
-        <h2>Kalkulator raty kredytu</h2>
-
-        <label for="kwota-kredytu">Kwota kredytu (PLN):
-          <input type="number" id="kwota-kredytu" placeholder="np. 100000" />
-        </label>
-
-        <label for="oprocentowanie-kredytu">Oprocentowanie (% rocznie):
-          <input type="number" id="oprocentowanie-kredytu" placeholder="np. 7" />
-        </label>
-
-        <label for="okres-kredytu">Okres kredytowania (miesiące):
-          <input type="number" id="okres-kredytu" placeholder="np. 60" />
-        </label>
-
-        <button onclick="obliczRateKredytu()">Oblicz</button>
-        <div id="wynik-kredyt"></div>
-      </div>
     </div>
 
     <div class="middle-panel">
-      <div class="seo-block fadeIn" id="seo-belka">
-        <h3>Podatek Belki - co warto wiedzieć?</h3>
-        <p>Podatek Belki to podatek od zysków kapitałowych, który wynosi 19%. Dotyczy odsetek z lokat bankowych, funduszy inwestycyjnych, giełdy i innych inwestycji.</p>
-        <p> Znajomość tego podatku pomaga lepiej planować inwestycje i maksymalizować zyski netto.</p>
-        <p>Bądź świadomy i oszczędzaj mądrze.</p>
+      <div class="seo-block fadeIn">
+        <h3>Konto 360° w Millennium Banku</h3>
+        <p>
+          Załóż darmowe Konto 360° online i odbierz nawet <strong>650 zł premii</strong> za transakcje kartą, BLIKiem oraz logowanie w aplikacji.
+          Warto skorzystać z oferty, jeśli chcesz zacząć oszczędzać i inwestować.
+        </p>
       </div>
 
-      <div class="seo-block fadeIn" id="seo-oszczednosci">
-        <h3>Jak oszczędzać efektywnie?</h3>
-        <p>Regularne oszczędzanie z kapitalizacją odsetek pozwala zbudować solidny kapitał. Pamiętaj, że czas to Twój sprzymierzeniec — im dłużej oszczędzasz, tym większy zysk. Dyscyplina i cierpliwość w regularnym oszczędzaniu systematycznie zwiększają Twój końcowy finansowy zysk.</p>
-      </div>
-
-      <div class="seo-block fadeIn" id="seo-kredyt">
-        <h3>Kredyty i finansowanie</h3>
-        <p>Planowanie rat kredytów jest ważne, aby nie obciążać domowego budżetu. Nasz kalkulator raty kredytu pozwoli Ci ocenić, ile zapłacisz co miesiąc.</p>
+      <div class="seo-block fadeIn" style="margin-top: 20px;">
+        <h3>Porównaj produkty finansowe</h3>
+        <p>
+          Użyj powyższych kalkulatorów, by sprawdzić, jak korzystne mogą być inwestycje i oszczędności.
+          Nie zapomnij też rozważyć ofert banków i promocji dostępnych na rynku.
+        </p>
       </div>
     </div>
 
-    <div class="right-panel fadeIn">
-      <h2>Sprawdź oferty inwestycyjne:</h2>
+    <aside class="right-panel fadeIn">
       <div class="partner-links">
         <div class="partner">
-          <a href="https://twoj-link-partnerski1.pl" target="_blank">
-            <img src="https://logo.clearbit.com/xtb.com" alt="XTB" />
-            <span>Zainwestuj w ETF-y z XTB</span>
+          <a href="TWOJ_LINK_AFILIACYJNY" target="_blank" rel="nofollow noopener noreferrer">
+            <img src="https://pbs.twimg.com/profile_images/1264310954566701057/JLBKm3_R_400x400.jpg" alt="Millennium Bank logo" />
+            <span>Konto 360° - Millennium Bank</span>
           </a>
         </div>
         <div class="partner">
-          <a href="https://twoj-link-partnerski2.pl" target="_blank">
-            <img src="https://logo.clearbit.com/bankmillennium.pl" alt="Millennium Bank" />
-            <span>Lokaty z wysokim oprocentowaniem</span>
-          </a>
-        </div>
-        <div class="partner">
-          <a href="https://twoj-link-partnerski3.pl" target="_blank">
-            <img src="https://logo.clearbit.com/aliorbank.pl" alt="Alior Bank" />
-            <span>Najlepsze konta oszczędnościowe 2025</span>
+          <a href="https://www.cinkciarz.pl/spot" target="_blank" rel="nofollow noopener noreferrer">
+            <img src="https://www.cinkciarz.pl/favicon.ico" alt="Cinkciarz.pl logo" />
+            <span>Kantor internetowy Cinkciarz.pl</span>
           </a>
         </div>
       </div>
+    </aside>
+  </div>
+
+  <!-- POPUP PROMOCYJNY -->
+  <div id="popup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupDesc">
+    <div class="popup-box">
+      <span class="popup-close" aria-label="Zamknij" role="button" tabindex="0" onclick="closePopup()">×</span>
+      <h2 id="popupTitle">💸 Zgarnij 650 zł za konto w Millennium!</h2>
+      <p id="popupDesc">
+        Załóż darmowe Konto 360° online i odbierz nawet <strong>650 zł premii</strong> za transakcje kartą, BLIKiem i logowania w aplikacji.
+      </p>
+      <a href="TWOJ_LINK_AFILIACYJNY" target="_blank" rel="nofollow noopener noreferrer" class="popup-button">Zgarnij premię →</a>
     </div>
-
   </div>
-<!-- === POPUP PROMOCYJNY: Konto Millennium 360° === -->
-<div id="popup" class="popup-overlay">
-  <div class="popup-box">
-    <span class="popup-close" onclick="closePopup()">×</span>
-    <h2>💸 Zgarnij 650 zł za konto w Millennium!</h2>
-    <p>Załóż darmowe Konto 360° online i odbierz nawet <strong>650 zł premii</strong> za transakcje kartą, BLIKiem i logowania w aplikacji.</p>
-    <a href="TWOJ_LINK_AFILIACYJNY" target="_blank" class="popup-button">Zgarnij premię →</a>
-  </div>
-</div>
 
-  <script src="script.js"></script>
+  <script>
+    // Kalkulator podatku Belki
+    function oblicz() {
+      const kwota = parseFloat(document.getElementById("kwota").value);
+      const oprocentowanie = parseFloat(document.getElementById("oprocentowanie").value);
+      const czas = parseFloat(document.getElementById("czas").value);
+
+      if (isNaN(kwota) || isNaN(oprocentowanie) || isNaN(czas) || kwota <= 0 || oprocentowanie <= 0 || czas <= 0) {
+        alert("Proszę podać poprawne, dodatnie wartości.");
+        return;
+      }
+
+      const odsetki = kwota * (oprocentowanie / 100) * (czas / 12);
+      const podatek = odsetki * 0.19;
+      const zysk = odsetki - podatek;
+
+      const wynikTekst = `
+        <p><strong>Odsetki brutto:</strong> ${odsetki.toFixed(2)} PLN</p>
+        <p><strong>Podatek Belki (19%):</strong> ${podatek.toFixed(2)} PLN</p>
+        <p><strong>Zysk netto:</strong> ${zysk.toFixed(2)} PLN</p>
+      `;
+
+      document.getElementById("wynik").innerHTML = wynikTekst;
+    }
+
+    // Kalkulator oszczędności
+    function obliczOszczednosci() {
+      const miesiecznaWplata = parseFloat(document.getElementById("miesieczna-wplata").value);
+      const oprocentowanie = parseFloat(document.getElementById("oprocentowanie-oszczednosci").value);
+      const okres = parseFloat(document.getElementById("okres-oszczednosci").value);
+
+      if (isNaN(miesiecznaWplata) || isNaN(oprocentowanie) || isNaN(okres) ||
+          miesiecznaWplata <= 0 || oprocentowanie <= 0 || okres <= 0) {
+        alert("Proszę podać poprawne, dodatnie wartości.");
+        return;
+      }
+
+      const r = (oprocentowanie / 100) / 12;
+      const n = okres;
+
+      const FV = miesiecznaWplata * ((Math.pow(1 + r, n) - 1) / r);
+
+      const wynikTekst = `
+        <p><strong>Przyszła wartość oszczędności:</strong> ${FV.toFixed(2)} PLN</p>
+      `;
+
+      document.getElementById("wynik-oszczednosci").innerHTML = wynikTekst;
+    }
+
+    // Popup JS
+    window.onload = () => {
+      setTimeout(() => {
+        document.getElementById("popup").classList.add("show");
+      }, 8000);
+    };
+
+    function closePopup() {
+      document.getElementById("popup").classList.remove("show");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closePopup();
+      }
+    });
+  </script>
 </body>
 </html>
