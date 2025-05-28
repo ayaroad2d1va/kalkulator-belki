@@ -272,38 +272,12 @@ body {
   color: #007bff;
 }
 /* Tło na całą stronę, ale pod warstwą z zawartością */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: #003366;
-  position: relative; /* ważne, żeby divy miały normalny flow */
-  z-index: 1;
-  background: none; /* wyłączamy background body, bo tło jest w tle */
-}
 
 /* Tło za zawartością - fixed, pełny ekran */
-.background-layer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 0;
-  background: linear-gradient(160deg, #e9f1ff 0%, #c8dcf7 100%);
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.05) 1px,
-    transparent 1px,
-    transparent 20px
-  );
-  background-size: cover;
-  pointer-events: none;
-}
-
-
-/* Zawartość ma wyższy indeks */
-.main-layout {
-  position: relative;
-  z-index: 1;
+body {
+  margin: 0;
+  background-color: #d9e9ff;
+  background-image: url('https://www.transparenttextures.com/patterns/blueprint.png');
+  color: #003366;
+  font-family: Arial, sans-serif;
 }
