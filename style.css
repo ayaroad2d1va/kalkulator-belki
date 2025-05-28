@@ -281,3 +281,8 @@ body {
   color: #003366;
   font-family: Arial, sans-serif;
 }
+/* Zawartość ma wyższy indeks */
+.main-layout {
+  position: relative;
+  z-index: 1;
+}
