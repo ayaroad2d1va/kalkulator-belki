@@ -1,43 +1,115 @@
 body {
   font-family: Arial, sans-serif;
   background: #f7f7f7;
-  padding: 40px;
+  margin: 0;
+  padding: 20px 40px;
+  color: #333;
 }
 
 .page-title {
   text-align: center;
-  font-size: 2.6rem;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #007bff;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
   font-weight: 900;
-  margin-bottom: 50px;
-  color: #0056b3;
   animation: fadeInDown 1s ease forwards;
 }
 
-.main-container {
+.main-layout {
   display: flex;
-  gap: 30px;
+  gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
-/* Lewa kolumna - kalkulatory */
+/* LEWY PANEL */
 .left-panel {
+  flex: 0 0 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* ŚRODKOWY PANEL */
+.middle-panel {
   flex: 1 1 400px;
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
 
+/* Każdy blok SEO musi mieć podobną wysokość do kalkulatora */
+.seo-block {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.6;
+  flex: 1 1 auto;
+}
+
+.seo-block h3 {
+  color: #007bff;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+/* PRAWY PANEL */
+.right-panel {
+  flex: 0 0 300px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 18px rgba(0,0,0,0.07);
+}
+
+.partner-links {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 15px;
+}
+
+.partner a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
+}
+
+.partner a:hover {
+  background-color: #e0f0ff;
+}
+
+.partner img {
+  width: 45px;
+  height: 45px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+/* KALKULATORY */
 .calculator {
   background: white;
   padding: 25px 30px;
-  border-radius: 12px;
-  box-shadow: 0 3px 18px rgba(0,0,0,0.07);
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
   font-size: 1rem;
   display: flex;
   flex-direction: column;
   gap: 15px;
-  animation: fadeInUp 1s ease forwards;
 }
 
 .calculator h2 {
@@ -84,91 +156,6 @@ body {
   background-color: #0056b3;
 }
 
-/* Środkowa kolumna - teksty SEO */
-.middle-panel {
-  flex: 1 1 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.seo-block {
-  background: white;
-  padding: 25px 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.05);
-  color: #444;
-  font-size: 1rem;
-  line-height: 1.6;
-  flex: 1 1 auto;
-  min-height: 290px; /* wyrównanie wysokości do kalkulatorów */
-  animation: fadeInUp 1.1s ease forwards;
-}
-
-.seo-block h2 {
-  margin-top: 0;
-  color: #007bff;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-
-#seo-oszczednosci p:last-child::after {
-  content: " Pamiętaj także o dywersyfikacji oszczędności oraz wyborze bezpiecznych instrumentów finansowych, które chronią Twój kapitał przed inflacją.";
-  display: block;
-  margin-top: 10px;
-  font-style: italic;
-  color: #555;
-}
-
-/* Prawa kolumna - linki afiliacyjne */
-.right-panel {
-  flex: 0 0 280px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 12px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-  animation: fadeInDown 1.2s ease forwards;
-}
-
-.right-panel h2 {
-  margin-top: 0;
-  font-weight: 700;
-  color: #007bff;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.partner-links {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.partner a {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  color: #222;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 8px 12px;
-  transition: background-color 0.3s ease;
-}
-
-.partner a:hover {
-  background-color: #e0f0ff;
-}
-
-.partner img {
-  width: 45px;
-  height: 45px;
-  border-radius: 6px;
-  object-fit: contain;
-}
-
 /* Animacje fadeInUp i fadeInDown */
 
 @keyframes fadeInUp {
@@ -191,4 +178,16 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.fadeInUp {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.fadeInDown {
+  animation: fadeInDown 0.8s ease forwards;
+}
+
+.fadeIn {
+  animation: fadeInUp 1.2s ease forwards;
 }
