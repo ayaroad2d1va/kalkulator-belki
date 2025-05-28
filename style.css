@@ -280,3 +280,10 @@ body {
   padding: 25px 30px;
   color: #003366;
 }
+body {
+  margin: 0;
+  background-color: #d9e9ff;
+  background-image: url('https://www.transparenttextures.com/patterns/blueprint.png');
+  color: #003366;
+  font-family: Arial, sans-serif;
+}
