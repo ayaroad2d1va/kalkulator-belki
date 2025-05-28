@@ -1,198 +1,189 @@
 body {
   font-family: Arial, sans-serif;
   background: #f7f7f7;
+  padding: 40px;
   margin: 0;
-  padding: 20px 40px;
-  color: #333;
 }
 
-.page-title {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 40px;
-  color: #007bff;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  font-weight: 900;
-  animation: fadeInDown 1s ease forwards;
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
+  transition: box-shadow 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.5);
+}
+
+#wynik,
+#wynik-oszczednosci,
+#wynik-kredyt {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Główne ułożenie strony */
 .main-layout {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-  justify-content: flex-start;
   align-items: flex-start;
 }
 
-/* LEWY PANEL */
-.left-panel {
-  flex: 0 0 480px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-/* ŚRODKOWY PANEL */
-.middle-panel {
-  flex: 1 1 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-/* Każdy blok SEO musi mieć podobną wysokość do kalkulatora */
-.seo-block {
-  background: white;
-  padding: 25px 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.05);
-  color: #444;
-  font-size: 1rem;
-  line-height: 1.6;
-  flex: 1 1 auto;
-}
-
-.seo-block h3 {
-  color: #007bff;
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-/* 👇 DODANE: tylko dla sekcji "Kredyty i finansowanie" */
-.align-kredyt {
-  margin-top: 8px;
-}
-
-/* PRAWY PANEL */
-.right-panel {
-  flex: 0 0 300px;
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 3px 18px rgba(0,0,0,0.07);
-}
-
-.partner-links {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  margin-top: 15px;
-}
-
-.partner a {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  color: #222;
-  font-weight: 600;
-  border-radius: 6px;
-  padding: 8px 12px;
-  transition: background-color 0.3s ease;
-}
-
-.partner a:hover {
-  background-color: #e0f0ff;
-}
-
-.partner img {
-  width: 45px;
-  height: 45px;
-  border-radius: 6px;
-  object-fit: contain;
-}
-
-/* KALKULATORY */
+/* Kalkulatory */
 .calculator {
-  background: white;
-  padding: 25px 30px;
+  flex: 1 1 700px;
+}
+
+/* Oferty afiliacyjne na dole po prawej */
+.partner-links {
+  flex: 0 0 300px;
+  background: #fff;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  font-size: 1rem;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse; /* od dołu do góry */
+  justify-content: flex-start;
   gap: 15px;
 }
 
-.calculator h2 {
+.partner-links h2 {
   margin-top: 0;
-  color: #0056b3;
-  font-weight: 800;
+  margin-bottom: 15px;
+  font-size: 22px;
 }
 
-.calculator label {
+.partner {
   display: flex;
-  flex-direction: column;
-  font-weight: 600;
-  color: #222;
+  align-items: center;
+  gap: 15px;
 }
 
-.calculator input {
-  margin-top: 5px;
-  padding: 8px 10px;
-  font-size: 1rem;
+.partner img {
+  height: 40px;
+  width: auto;
   border-radius: 6px;
-  border: 1px solid #aaa;
-  outline-color: #007bff;
-  transition: border-color 0.2s ease;
 }
 
-.calculator input:focus {
-  border-color: #007bff;
+.partner a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.calculator button {
-  margin-top: 10px;
-  background-color: #007bff;
-  border: none;
-  padding: 12px 18px;
-  color: white;
-  font-weight: 700;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
+.partner a:hover {
+  color: #0066cc;
 }
 
-.calculator button:hover {
-  background-color: #0056b3;
+/* Sekcja info pod kalkulatorami */
+.belka-info {
+  max-width: 1000px;
+  margin: 60px auto 0;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  font-size: 17px;
+  line-height: 1.6;
+  color: #444;
 }
 
-/* Animacje fadeInUp i fadeInDown */
+/* Kalkulatory style i animacje */
+.calc-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s forwards;
+}
+
+#calc-belka { animation-delay: 0.1s; }
+#calc-oszczednosci { animation-delay: 0.3s; }
+#calc-kredyt { animation-delay: 0.5s; }
+
+.calc-box:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
 
 @keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-@keyframes fadeInDown {
-  0% {
-    opacity: 0;
-    transform: translateY(-40px);
+/* Responsive */
+@media (max-width: 900px) {
+  .main-layout {
+    flex-direction: column;
+    align-items: center;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+
+  .partner-links {
+    order: 2;
+    width: 100%;
+    max-width: 700px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
-}
 
-.fadeInUp {
-  animation: fadeInUp 0.8s ease forwards;
-}
+  .partner-links h2 {
+    width: 100%;
+    text-align: center;
+  }
 
-.fadeInDown {
-  animation: fadeInDown 0.8s ease forwards;
-}
+  .partner {
+    margin: 10px;
+  }
 
-.fadeIn {
-  animation: fadeInUp 1.2s ease forwards;
+  .calculator {
+    flex: 1 1 100%;
+  }
 }
