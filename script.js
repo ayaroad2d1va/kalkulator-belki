@@ -5,17 +5,19 @@ function oblicz() {
   const czas = parseFloat(document.getElementById('czas').value);
 
   if (isNaN(kwota) || isNaN(oprocentowanie) || isNaN(czas) || kwota <= 0 || oprocentowanie <= 0 || czas <= 0) {
-    document.getElementById('wynik').textContent = 'Proszę podać poprawne wartości większe od zera.';
+    document.getElementById('wynik').textContent = 'Proszę wprowadzić poprawne dane.';
     return;
   }
 
-  // Zysk brutto = kwota * (oprocentowanie/100) * (czas/12)
-  const zyskBrutto = kwota * (oprocentowanie / 100) * (czas / 12);
+  const zysk = kwota * (oprocentowanie / 100) * (czas / 12);
+  const podatekBelki = zysk * 0.19;
+  const netto = zysk - podatekBelki;
 
-  // Podatek Belki 19%
-  const podatek = zyskBrutto * 0.19;
-
-  document.getElementById('wynik').textContent = `Podatek Belki do zapłaty: ${podatek.toFixed(2)} PLN`;
+  document.getElementById('wynik').innerHTML = `
+    Zysk brutto: ${zysk.toFixed(2)} PLN<br>
+    Podatek Belki (19%): ${podatekBelki.toFixed(2)} PLN<br>
+    Zysk netto: ${netto.toFixed(2)} PLN
+  `;
 }
 
 // Kalkulator oszczędności z kapitalizacją miesięczną
@@ -25,17 +27,18 @@ function obliczOszczednosci() {
   const miesiace = parseInt(document.getElementById('okres-oszczednosci').value);
 
   if (isNaN(wplata) || isNaN(oprocentowanie) || isNaN(miesiace) || wplata <= 0 || oprocentowanie <= 0 || miesiace <= 0) {
-    document.getElementById('wynik-oszczednosci').textContent = 'Proszę podać poprawne wartości większe od zera.';
+    document.getElementById('wynik-oszczednosci').textContent = 'Proszę wprowadzić poprawne dane.';
     return;
   }
 
-  // miesięczne oprocentowanie
-  const r = (oprocentowanie / 100) / 12;
+  const miesieczneOprocentowanie = oprocentowanie / 100 / 12;
+  let saldo = 0;
 
-  // wzór na sumę ciągu geometrycznego (kapitalizacja co miesiąc)
-  const suma = wplata * ((Math.pow(1 + r, miesiace) - 1) / r);
+  for(let i = 0; i < miesiace; i++) {
+    saldo = (saldo + wplata) * (1 + miesieczneOprocentowanie);
+  }
 
-  document.getElementById('wynik-oszczednosci').textContent = `Po ${miesiace} miesiącach oszczędności wyniosą: ${suma.toFixed(2)} PLN`;
+  document.getElementById('wynik-oszczednosci').innerHTML = `Po ${miesiace} miesiącach zaoszczędzisz około <strong>${saldo.toFixed(2)} PLN</strong>.`;
 }
 
 // Kalkulator raty kredytu (raty równe)
@@ -44,20 +47,14 @@ function obliczRateKredytu() {
   const oprocentowanie = parseFloat(document.getElementById('oprocentowanie-kredytu').value);
   const miesiace = parseInt(document.getElementById('okres-kredytu').value);
 
-  if (isNaN(kwota) || isNaN(oprocentowanie) || isNaN(miesiace) || kwota <= 0 || oprocentowanie < 0 || miesiace <= 0) {
-    document.getElementById('wynik-kredyt').textContent = 'Proszę podać poprawne wartości (oprocentowanie może być 0 lub większe).';
+  if (isNaN(kwota) || isNaN(oprocentowanie) || isNaN(miesiace) || kwota <= 0 || oprocentowanie <= 0 || miesiace <= 0) {
+    document.getElementById('wynik-kredyt').textContent = 'Proszę wprowadzić poprawne dane.';
     return;
   }
 
-  const r = (oprocentowanie / 100) / 12;
+  const miesieczneOprocentowanie = oprocentowanie / 100 / 12;
+  // Wzór na ratę równą: R = P * r * (1 + r)^n / ((1 + r)^n - 1)
+  const rata = kwota * miesieczneOprocentowanie * Math.pow(1 + miesieczneOprocentowanie, miesiace) / (Math.pow(1 + miesieczneOprocentowanie, miesiace) - 1);
 
-  let rata;
-
-  if (r === 0) {
-    rata = kwota / miesiace;
-  } else {
-    rata = kwota * r / (1 - Math.pow(1 + r, -miesiace));
-  }
-
-  document.getElementById('wynik-kredyt').textContent = `Twoja miesięczna rata: ${rata.toFixed(2)} PLN`;
+  document.getElementById('wynik-kredyt').innerHTML = `Twoja miesięczna rata wynosi około <strong>${rata.toFixed(2)} PLN</strong>.`;
 }
