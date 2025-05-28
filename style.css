@@ -41,3 +41,33 @@ button:hover {
   margin-top: 20px;
   font-size: 18px;
 }
+.partner-links {
+  margin-top: 40px;
+}
+
+.partner {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+
+.partner img {
+  height: 40px;
+  width: auto;
+  border-radius: 6px;
+}
+
+.partner a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.partner a:hover {
+  color: #0066cc;
+}
