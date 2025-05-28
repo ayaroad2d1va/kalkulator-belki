@@ -1,26 +1,34 @@
-// Podatek Belki
+// --- Popup ---
+function closePopup() {
+  document.getElementById('popup').style.display = 'none';
+}
+
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('popup').style.display = 'flex';
+  }, 3000);
+});
+
+// --- Kalkulator podatku Belki ---
 function oblicz() {
   const kwota = parseFloat(document.getElementById('kwota').value);
   const oprocentowanie = parseFloat(document.getElementById('oprocentowanie').value);
   const czas = parseInt(document.getElementById('czas').value);
 
   if (isNaN(kwota) || isNaN(oprocentowanie) || isNaN(czas) || kwota <= 0 || oprocentowanie <= 0 || czas <= 0) {
-    alert('Proszę podać poprawne dane liczbowe większe od zera.');
+    alert('Proszę podać poprawne dane większe od zera.');
     return;
   }
 
-  // Oblicz zysk brutto (procent roczny podzielony na miesiące)
   const zyskBrutto = kwota * (oprocentowanie / 100) * (czas / 12);
-  // Podatek Belki 19%
   const podatek = zyskBrutto * 0.19;
-  // Zysk netto
   const zyskNetto = zyskBrutto - podatek;
 
   document.getElementById('wynik').textContent = `Zysk netto po ${czas} miesiącach: ${zyskNetto.toFixed(2)} PLN`;
 }
 
-// Kalkulator oszczędności z wykresem
-let wykresOszczednosci; // referencja do wykresu
+// --- Kalkulator oszczędności ---
+let wykresOszczednosci;
 
 function obliczOszczednosci() {
   const miesiecznaWplata = parseFloat(document.getElementById('miesieczna-wplata').value);
@@ -29,11 +37,10 @@ function obliczOszczednosci() {
 
   if (isNaN(miesiecznaWplata) || isNaN(oprocentowanie) || isNaN(okres) ||
       miesiecznaWplata <= 0 || oprocentowanie <= 0 || okres <= 0) {
-    alert('Proszę podać poprawne dane liczbowe większe od zera.');
+    alert('Proszę podać poprawne dane większe od zera.');
     return;
   }
 
-  // Obliczenia kapitalizacji miesięcznej
   const miesieczneOprocentowanie = oprocentowanie / 100 / 12;
   let saldo = 0;
   const saldoMiesieczne = [];
@@ -47,7 +54,6 @@ function obliczOszczednosci() {
 
   document.getElementById('wynik-oszczednosci').textContent = `Oszczędności po ${okres} miesiącach: ${saldo.toFixed(2)} PLN`;
 
-  // Rysowanie wykresu lub aktualizacja
   const ctx = document.getElementById('wykres-oszczednosci').getContext('2d');
   if (wykresOszczednosci) {
     wykresOszczednosci.data.labels = labels;
@@ -81,7 +87,7 @@ function obliczOszczednosci() {
   }
 }
 
-// Kalkulator raty kredytu
+// --- Kalkulator raty kredytu ---
 function obliczRateKredytu() {
   const kwotaKredytu = parseFloat(document.getElementById('kwota-kredytu').value);
   const oprocentowanie = parseFloat(document.getElementById('oprocentowanie-kredytu').value);
@@ -89,25 +95,12 @@ function obliczRateKredytu() {
 
   if (isNaN(kwotaKredytu) || isNaN(oprocentowanie) || isNaN(okres) ||
       kwotaKredytu <= 0 || oprocentowanie <= 0 || okres <= 0) {
-    alert('Proszę podać poprawne dane liczbowe większe od zera.');
+    alert('Proszę podać poprawne dane większe od zera.');
     return;
   }
 
   const miesieczneOprocentowanie = oprocentowanie / 100 / 12;
-  // Wzór na ratę annuitetową
   const rata = (kwotaKredytu * miesieczneOprocentowanie) / (1 - Math.pow(1 + miesieczneOprocentowanie, -okres));
 
   document.getElementById('wynik-kredyt').textContent = `Miesięczna rata kredytu: ${rata.toFixed(2)} PLN`;
 }
-
-// Popup - zamknięcie
-function closePopup() {
-  document.getElementById('popup').style.display = 'none';
-}
-
-// Jeśli chcesz pokazać popup po jakimś czasie, np. po 3 sekundach:
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('popup').style.display = 'flex';
-  }, 3000);
-});
