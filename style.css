@@ -61,6 +61,11 @@ body {
   font-weight: 700;
 }
 
+/* 👇 DODANE: tylko dla sekcji "Kredyty i finansowanie" */
+.align-kredyt {
+  margin-top: 8px;
+}
+
 /* PRAWY PANEL */
 .right-panel {
   flex: 0 0 300px;
