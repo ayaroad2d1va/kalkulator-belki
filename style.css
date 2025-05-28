@@ -1,5 +1,3 @@
-/* style.css */
-
 body {
   font-family: Arial, sans-serif;
   background: #f7f7f7;
@@ -25,9 +23,10 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   justify-content: flex-start;
+  align-items: flex-start;
 }
 
-/* LEWY PANEL - Kalkulatory */
+/* LEWY PANEL */
 .left-panel {
   flex: 0 0 480px;
   display: flex;
@@ -35,137 +34,134 @@ body {
   gap: 30px;
 }
 
-/* kalkulatory styl */
-.calculator {
-  background: white;
-  padding: 25px 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  animation: fadeInUp 0.8s ease forwards;
-}
-
-.calculator h2 {
-  margin-top: 0;
-  color: #0056b3;
-  margin-bottom: 15px;
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-
-label {
-  display: block;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-}
-
-input:focus {
-  border-color: #007bff;
-  outline: none;
-}
-
-button {
-  padding: 10px 15px;
-  font-weight: 700;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 7px;
-  font-size: 1rem;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-#wynik, #wynik-oszczednosci, #wynik-kredyt {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #222;
-}
-
-/* ŚRODKOWY PANEL - Teksty SEO */
+/* ŚRODKOWY PANEL */
 .middle-panel {
   flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Każdy blok SEO musi mieć podobną wysokość do kalkulatora */
+.seo-block {
   background: white;
-  padding: 30px 25px;
+  padding: 25px 30px;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(0,0,0,0.05);
   color: #444;
   font-size: 1rem;
   line-height: 1.6;
-  animation: fadeIn 1.2s ease forwards;
+  flex: 1 1 auto;
 }
 
-.middle-panel h2 {
+.seo-block h3 {
   color: #007bff;
   margin-top: 0;
   margin-bottom: 10px;
   font-weight: 700;
 }
 
-/* PRAWY PANEL - Oferty afiliacyjne */
+/* PRAWY PANEL */
 .right-panel {
   flex: 0 0 300px;
   background: white;
-  padding: 20px 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.05);
-  animation: fadeIn 1.4s ease forwards;
-}
-
-.right-panel h2 {
-  margin-top: 0;
-  color: #007bff;
-  margin-bottom: 20px;
-  font-weight: 700;
-  text-align: center;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 18px rgba(0,0,0,0.07);
 }
 
 .partner-links {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
+  margin-top: 15px;
 }
 
 .partner a {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 14px;
   text-decoration: none;
-  font-weight: 700;
-  color: #333;
-  transition: color 0.3s ease;
+  color: #222;
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 8px 12px;
+  transition: background-color 0.3s ease;
 }
 
 .partner a:hover {
-  color: #0066cc;
+  background-color: #e0f0ff;
 }
 
 .partner img {
-  height: 40px;
-  width: auto;
+  width: 45px;
+  height: 45px;
   border-radius: 6px;
+  object-fit: contain;
 }
 
-/* Animacje */
+/* KALKULATORY */
+.calculator {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.calculator h2 {
+  margin-top: 0;
+  color: #0056b3;
+  font-weight: 800;
+}
+
+.calculator label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #222;
+}
+
+.calculator input {
+  margin-top: 5px;
+  padding: 8px 10px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  outline-color: #007bff;
+  transition: border-color 0.2s ease;
+}
+
+.calculator input:focus {
+  border-color: #007bff;
+}
+
+.calculator button {
+  margin-top: 10px;
+  background-color: #007bff;
+  border: none;
+  padding: 12px 18px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.calculator button:hover {
+  background-color: #0056b3;
+}
+
+/* Animacje fadeInUp i fadeInDown */
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
   }
   100% {
     opacity: 1;
@@ -176,7 +172,7 @@ button:hover {
 @keyframes fadeInDown {
   0% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-40px);
   }
   100% {
     opacity: 1;
@@ -184,34 +180,14 @@ button:hover {
   }
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
+.fadeInUp {
+  animation: fadeInUp 0.8s ease forwards;
 }
 
-/* Responsywność */
-@media (max-width: 1024px) {
-  .main-layout {
-    flex-direction: column;
-  }
-
-  .left-panel, .middle-panel, .right-panel {
-    flex: 1 1 auto;
-    max-width: 100%;
-  }
-
-  .right-panel {
-    order: 3;
-  }
+.fadeInDown {
+  animation: fadeInDown 0.8s ease forwards;
 }
 
-/* Mały ekran - mniej paddingu */
-@media (max-width: 480px) {
-  body {
-    padding: 20px 15px;
-  }
+.fadeIn {
+  animation: fadeInUp 1.2s ease forwards;
 }
