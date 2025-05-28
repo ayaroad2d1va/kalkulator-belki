@@ -58,3 +58,15 @@ function obliczRateKredytu() {
 
   document.getElementById('wynik-kredyt').innerHTML = `Twoja miesięczna rata wynosi około <strong>${rata.toFixed(2)} PLN</strong>.`;
 }
+<script>
+  // Wyświetl popup po 8 sekundach
+  window.onload = () => {
+    setTimeout(() => {
+      document.getElementById("popup").style.display = "flex";
+    }, 8000);
+  };
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+</script>
