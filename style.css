@@ -71,3 +71,35 @@ button:hover {
 .partner a:hover {
   color: #0066cc;
 }
+.main-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.calculator {
+  flex: 1 1 500px;
+}
+
+.partner-links {
+  flex: 1 1 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.partner-links h2 {
+  margin-top: 0;
+}
+
+.belka-info {
+  max-width: 1000px;
+  margin: 60px auto 0;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
