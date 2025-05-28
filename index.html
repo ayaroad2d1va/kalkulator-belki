@@ -7,64 +7,70 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Kalkulator podatku Belki</h1>
+  <div class="main-layout">
+    <div class="calculator">
+      <div class="container">
+        <h1>Kalkulator podatku Belki</h1>
 
-    <label for="kwota">Kwota inwestycji (PLN):
-      <input type="number" id="kwota" placeholder="np. 10000" />
-    </label>
+        <label for="kwota">Kwota inwestycji (PLN):
+          <input type="number" id="kwota" placeholder="np. 10000" />
+        </label>
 
-    <label for="oprocentowanie">Oprocentowanie (% rocznie):
-      <input type="number" id="oprocentowanie" placeholder="np. 5" />
-    </label>
+        <label for="oprocentowanie">Oprocentowanie (% rocznie):
+          <input type="number" id="oprocentowanie" placeholder="np. 5" />
+        </label>
 
-    <label for="czas">Czas trwania inwestycji (miesiące):
-      <input type="number" id="czas" placeholder="np. 12" />
-    </label>
+        <label for="czas">Czas trwania inwestycji (miesiące):
+          <input type="number" id="czas" placeholder="np. 12" />
+        </label>
 
-    <button onclick="oblicz()">Oblicz</button>
+        <button onclick="oblicz()">Oblicz</button>
 
-    <div id="wynik"></div>
+        <div id="wynik"></div>
+      </div>
+    </div>
+
+    <div class="partner-links">
+      <h2>Sprawdź oferty inwestycyjne:</h2>
+      <div class="partner">
+        <a href="https://twoj-link-partnerski1.pl" target="_blank">    
+          <img src="https://logo.clearbit.com/xtb.com" alt="XTB" />
+          <span>Zainwestuj w ETF-y z XTB</span>
+        </a>
+      </div>
+      <div class="partner">
+        <a href="https://twoj-link-partnerski2.pl" target="_blank">
+          <img src="https://logo.clearbit.com/bankmillennium.pl" alt="Millennium Bank" />
+          <span>Lokaty z wysokim oprocentowaniem</span>
+        </a>
+      </div>
+      <div class="partner">
+        <a href="https://twoj-link-partnerski3.pl" target="_blank">
+          <img src="https://logo.clearbit.com/aliorbank.pl" alt="Alior Bank" />
+          <span>Najlepsze konta oszczędnościowe 2025</span>
+        </a>
+      </div>
+    </div>
   </div>
-<div class="partner-links">
-  <h2>Sprawdź oferty inwestycyjne:</h2>
-  <div class="partner">
-    <a href="https://twoj-link-partnerski1.pl" target="_blank">    
-     <img src="https://logo.clearbit.com/xtb.com" alt="XTB">
-      <span>Zainwestuj w ETF-y z XTB</span>
-    </a>
-  </div>
-  <div class="partner">
-    <a href="https://twoj-link-partnerski2.pl" target="_blank">
-      <img src="https://logo.clearbit.com/bankmillennium.pl" alt="Millennium Bank" />
-      <span>Lokaty z wysokim oprocentowaniem</span>
-    </a>
-  </div>
-  <div class="partner">
-    <a href="https://twoj-link-partnerski3.pl" target="_blank">
-     <img src="https://logo.clearbit.com/aliorbank.pl" alt="Alior Bank" />
-      <span>Najlepsze konta oszczędnościowe 2025</span>
-    </a>
-  </div>
-</div>
 
-  <section style="margin-top: 50px;">
-  <h2>Jak obliczyć podatek Belki?</h2>
-  <p>
-    Podatek Belki to potoczne określenie podatku od zysków kapitałowych, który w Polsce wynosi 19%. Dotyczy on m.in. odsetek z lokat bankowych, zysków z giełdy, funduszy inwestycyjnych czy obligacji.
-  </p>
-  <p>
-    Aby obliczyć podatek Belki, należy pomnożyć osiągnięty zysk przez 0,19. Przykład: jeśli zarobiłeś 1000 zł z inwestycji, zapłacisz 190 zł podatku.
-  </p>
-  <p>
-    Podatek jest automatycznie pobierany przez instytucje finansowe, jednak w przypadku zagranicznych brokerów lub nietypowych inwestycji, konieczne może być jego samodzielne rozliczenie w zeznaniu PIT.
-  </p>
-  <p>
-    Nasz kalkulator pozwala szybko i wygodnie sprawdzić, ile wynosi należny podatek od Twojego zysku.
-  </p>
-</section>
+  <section class="belka-info">
+    <h2>Jak obliczyć podatek Belki?</h2>
+    <p>
+      Podatek Belki to potoczne określenie podatku od zysków kapitałowych, który w Polsce wynosi 19%. Dotyczy on m.in. odsetek z lokat bankowych, zysków z giełdy, funduszy inwestycyjnych czy obligacji.
+    </p>
+    <p>
+      Aby obliczyć podatek Belki, należy pomnożyć osiągnięty zysk przez 0,19. Przykład: jeśli zarobiłeś 1000 zł z inwestycji, zapłacisz 190 zł podatku.
+    </p>
+    <p>
+      Podatek jest automatycznie pobierany przez instytucje finansowe, jednak w przypadku zagranicznych brokerów lub nietypowych inwestycji, konieczne może być jego samodzielne rozliczenie w zeznaniu PIT.
+    </p>
+    <p>
+      Nasz kalkulator pozwala szybko i wygodnie sprawdzić, ile wynosi należny podatek od Twojego zysku.
+    </p>
+  </section>
 
   <script src="script.js"></script>
 </body>
+
 </html>
 
