@@ -288,11 +288,19 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0; /* niżej niż wszystko inne */
-  background: linear-gradient(135deg, #a3c1ff 0%, #d3e4ff 100%);
-  background-size: 100px 100px;
-  pointer-events: none; /* żeby tło nie przeszkadzało w klikaniu */
+  z-index: 0;
+  background: linear-gradient(160deg, #e9f1ff 0%, #c8dcf7 100%);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px,
+    transparent 20px
+  );
+  background-size: cover;
+  pointer-events: none;
 }
+
 
 /* Zawartość ma wyższy indeks */
 .main-layout {
