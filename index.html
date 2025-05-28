@@ -5,13 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Kalkulatory finansowe</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* DODANE: Tło na całą stronę, ale pod divami */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #003366;
+      position: relative; /* ważne dla z-index */
+      z-index: 1;
+      background: none; /* wyłączamy defaultowe tło */
+    }
+    /* Tło za zawartością - fixed, pełny ekran */
+    .background-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0; /* poniżej wszystkiego */
+      background: linear-gradient(135deg, #a3c1ff 0%, #d3e4ff 100%);
+      background-image: url('https://www.transparenttextures.com/patterns/blueprint.png');
+      background-repeat: repeat;
+      background-size: 150px 150px;
+      pointer-events: none; /* nie blokuje klików */
+    }
+
+    /* Zawartość ma wyższy indeks */
+    .main-layout, .page-title, .left-panel, .middle-panel, .right-panel {
+      position: relative;
+      z-index: 1;
+    }
+  </style>
 </head>
 <body>
-<div class="background-layer"></div>
 
-  <div class="main-layout">
-    <!-- Twoje kalkulatory, seo, etc. -->
-  </div>
+  <div class="background-layer"></div>
+
   <h1 class="page-title">Kalkulatory finansowe</h1>
 
   <div class="main-layout">
@@ -19,57 +48,45 @@
     <div class="left-panel">
       <div class="calculator fadeInUp" id="calc-belka">
         <h2>Kalkulator podatku Belki</h2>
-
         <label for="kwota">Kwota inwestycji (PLN):
           <input type="number" id="kwota" placeholder="np. 10000" />
         </label>
-
         <label for="oprocentowanie">Oprocentowanie (% rocznie):
           <input type="number" id="oprocentowanie" placeholder="np. 5" />
         </label>
-
         <label for="czas">Czas trwania inwestycji (miesiące):
           <input type="number" id="czas" placeholder="np. 12" />
         </label>
-
         <button onclick="oblicz()">Oblicz</button>
         <div id="wynik"></div>
       </div>
 
       <div class="calculator fadeInUp" id="calc-oszczednosci">
         <h2>Kalkulator oszczędności</h2>
-
         <label for="miesieczna-wplata">Miesięczna wpłata (PLN):
           <input type="number" id="miesieczna-wplata" placeholder="np. 500" />
         </label>
-
         <label for="oprocentowanie-oszczednosci">Oprocentowanie (% rocznie):
           <input type="number" id="oprocentowanie-oszczednosci" placeholder="np. 4" />
         </label>
-
         <label for="okres-oszczednosci">Okres oszczędzania (miesiące):
           <input type="number" id="okres-oszczednosci" placeholder="np. 24" />
         </label>
-
         <button onclick="obliczOszczednosci()">Oblicz</button>
         <div id="wynik-oszczednosci"></div>
       </div>
 
       <div class="calculator fadeInUp" id="calc-kredyt">
         <h2>Kalkulator raty kredytu</h2>
-
         <label for="kwota-kredytu">Kwota kredytu (PLN):
           <input type="number" id="kwota-kredytu" placeholder="np. 100000" />
         </label>
-
         <label for="oprocentowanie-kredytu">Oprocentowanie (% rocznie):
           <input type="number" id="oprocentowanie-kredytu" placeholder="np. 7" />
         </label>
-
         <label for="okres-kredytu">Okres kredytowania (miesiące):
           <input type="number" id="okres-kredytu" placeholder="np. 60" />
         </label>
-
         <button onclick="obliczRateKredytu()">Oblicz</button>
         <div id="wynik-kredyt"></div>
       </div>
@@ -79,7 +96,6 @@
       <div class="seo-block fadeIn" id="seo-belka">
         <h3>Podatek Belki - co warto wiedzieć?</h3>
         <p>Podatek Belki to podatek od zysków kapitałowych, który wynosi 19%. Dotyczy odsetek z lokat bankowych, funduszy inwestycyjnych, giełdy i innych inwestycji. Znajomość tego podatku pomaga lepiej planować inwestycje i maksymalizować zyski netto. Bądź świadomy i oszczędzaj mądrze.</p>
-      
       </div>
 
       <div class="seo-block fadeIn" id="seo-oszczednosci">
