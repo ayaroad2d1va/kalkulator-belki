@@ -1,21 +1,32 @@
 let wykresOszczednosci = null;
 
-// Funkcja dodająca efekt pulsowania błędu (dodaje klasę, usuwa po animacji)
+// Dodaj klasę z czerwonym obramowaniem i pulsowaniem błędu (animacja CSS)
 function oznaczBlad(id) {
   const el = document.getElementById(id);
+  // Dodaj klasę błędu
+  el.classList.add('input-error');
+  // Dodaj animację pulsowania
   el.classList.add('errorPulse');
+  // Usuń animację po czasie, ale zostaw czerwone obramowanie, dopóki pole jest niepoprawne
   setTimeout(() => el.classList.remove('errorPulse'), 1500);
 }
 
-// Walidacja pola - czy jest wypełnione i czy wartość to liczba
+// Sprawdź i usuń klasę błędu jeśli pole poprawne
+function aktualizujStanPola(id) {
+  const el = document.getElementById(id);
+  if (walidujPole(id)) {
+    el.classList.remove('input-error');
+  }
+}
+
+// Walidacja pola - czy jest wypełnione i czy wartość to liczba > 0
 function walidujPole(id) {
   const el = document.getElementById(id);
   const val = el.value.trim();
-
-  if (val === "") return false;          // Puste pole - nie OK
-  if (isNaN(parseFloat(val))) return false; // Nie liczba - nie OK
-
-  return true; // OK
+  if (val === "") return false;
+  if (isNaN(parseFloat(val))) return false;
+  if (parseFloat(val) <= 0) return false;
+  return true;
 }
 
 // --- Kalkulator podatku Belki ---
@@ -27,6 +38,8 @@ function oblicz() {
     if (!walidujPole(id)) {
       oznaczBlad(id);
       wszystkieOK = false;
+    } else {
+      aktualizujStanPola(id);
     }
   }
   if (!wszystkieOK) {
@@ -54,6 +67,8 @@ function obliczOszczednosci() {
     if (!walidujPole(id)) {
       oznaczBlad(id);
       wszystkieOK = false;
+    } else {
+      aktualizujStanPola(id);
     }
   }
   if (!wszystkieOK) {
@@ -100,13 +115,8 @@ function obliczOszczednosci() {
     options: {
       responsive: true,
       scales: {
-        x: {
-          title: { display: true, text: 'Miesiąc' }
-        },
-        y: {
-          title: { display: true, text: 'Saldo (PLN)' },
-          beginAtZero: true
-        }
+        x: { title: { display: true, text: 'Miesiąc' } },
+        y: { title: { display: true, text: 'Saldo (PLN)' }, beginAtZero: true }
       },
       plugins: {
         legend: { display: true, position: 'top' },
@@ -125,6 +135,8 @@ function obliczRateKredytu() {
     if (!walidujPole(id)) {
       oznaczBlad(id);
       wszystkieOK = false;
+    } else {
+      aktualizujStanPola(id);
     }
   }
   if (!wszystkieOK) {
@@ -155,4 +167,20 @@ function closePopup() {
 window.addEventListener("load", () => {
   // Pokaz popup po 3 sekundach
   setTimeout(showPopup, 3000);
+
+  // Dodaj nasłuchiwanie inputów, żeby usuwać błąd po poprawnym wpisaniu wartości
+  const wszystkiePola = [
+    "kwota", "oprocentowanie", "czas",
+    "miesieczna-wplata", "oprocentowanie-oszczednosci", "okres-oszczednosci",
+    "kwota-kredytu", "oprocentowanie-kredytu", "okres-kredytu"
+  ];
+
+  wszystkiePola.forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener("input", () => {
+      if (walidujPole(id)) {
+        el.classList.remove('input-error');
+      }
+    });
+  });
 });
