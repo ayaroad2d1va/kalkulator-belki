@@ -1,10 +1,13 @@
-/* Usuwamy tło i padding z body */
+/* Reset i body */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: #003366;
   position: relative;
   z-index: 1;
+  /* usuń tło z body! */
+  background: none;
+  padding: 0;
 }
 
 /* Tło pod całą zawartością */
@@ -22,18 +25,18 @@ body {
   pointer-events: none;
 }
 
-/* Kontener główny z paddingiem */
+/* Kontener główny ma padding i margin, żeby zachować layout */
 .main-layout {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px 40px;
   display: flex;
   gap: 40px;
+  max-width: 1200px;
+  margin: 40px auto; /* od góry/dół */
+  padding: 20px 40px; /* wewnętrzne odstępy */
   justify-content: flex-start;
   align-items: flex-start;
-  background: transparent; /* ważne by nie zasłaniał tła */
+  background: transparent; /* ważne żeby nie zasłaniał tła */
 }
 
-/* Możesz zostawić dalej resztę swoich stylów, np. paneli, kalkulatorów itp. */
+/* Reszta Twoich styli bez zmian */
