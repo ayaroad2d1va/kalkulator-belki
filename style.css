@@ -1,11 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f7f7f7;
-  margin: 0;
-  padding: 20px 40px;
-  color: #333;
-}
-
 .page-title {
   text-align: center;
   font-size: 2.5rem;
@@ -280,6 +272,8 @@ body {
   background-image: url('https://www.transparenttextures.com/patterns/blueprint.png');
   color: #003366;
   font-family: Arial, sans-serif;
+}
+
 }
 /* Zawartość ma wyższy indeks */
 .main-layout {
