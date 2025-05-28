@@ -1,41 +1,89 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f7f7f7;
-  padding: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #e0f0ff, #ffffff);
+  padding: 40px 20px;
   margin: 0;
   color: #333;
+  min-height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+}
+
+header h1 {
+  font-weight: 700;
+  font-size: 2.8rem;
+  color: #004085;
+}
+
+.main-layout {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto 80px;
+}
+
+.calculator {
+  flex: 1 1 320px;
+  max-width: 360px;
 }
 
 .container {
-  max-width: 500px;
-  margin: auto;
   background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 123, 255, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.container:hover {
+  box-shadow: 0 12px 20px rgba(0, 123, 255, 0.3);
+}
+
+h2 {
+  color: #004085;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.5rem;
 }
 
 label {
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  font-weight: 600;
+  color: #0056b3;
+  font-size: 1rem;
 }
 
 input {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 10px 12px;
+  margin-top: 6px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px #007bff88;
 }
 
 button {
-  padding: 10px 15px;
-  font-weight: bold;
+  width: 100%;
+  padding: 12px;
   background-color: #007bff;
   color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
+  margin-top: 10px;
   transition: background-color 0.3s ease;
 }
 
@@ -43,80 +91,104 @@ button:hover {
   background-color: #0056b3;
 }
 
-#wynik, #wynik-oszczednosci {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
+#wynik, #wynik-oszczednosci, #wynik-kredyt {
+  margin-top: 22px;
+  font-size: 1.2rem;
+  font-weight: 700;
   color: #007bff;
+  min-height: 28px;
+}
+
+.seo-info {
+  max-width: 900px;
+  background: white;
+  margin: 0 auto 100px;
+  padding: 30px 40px;
+  border-radius: 14px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  line-height: 1.65;
+  color: #222;
+}
+
+.seo-info h2 {
+  color: #004085;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.seo-info p {
+  margin-bottom: 16px;
+  font-size: 1.1rem;
 }
 
 .partner-links {
-  margin-top: 40px;
-  flex: 1 1 300px;
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 320px;
+  background: white;
+  padding: 20px 25px;
+  border-radius: 14px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  z-index: 1000;
+}
+
+.partner-links h2 {
+  font-weight: 700;
+  color: #004085;
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
 }
 
 .partner {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin: 15px 0;
+  margin-bottom: 15px;
 }
 
 .partner img {
-  height: 40px;
+  height: 45px;
   width: auto;
-  border-radius: 6px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px #007bff33;
+  transition: transform 0.3s ease;
+}
+
+.partner img:hover {
+  transform: scale(1.1);
 }
 
 .partner a {
+  color: #0056b3;
+  font-weight: 700;
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  transition: color 0.2s;
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  transition: color 0.25s ease;
+  flex-grow: 1;
 }
 
 .partner a:hover {
-  color: #0066cc;
+  color: #003d80;
 }
 
-.main-layout {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  justify-content: center;
-  align-items: flex-start;
-  max-width: 1100px;
-  margin: auto;
-}
+@media (max-width: 1100px) {
+  .partner-links {
+    position: static;
+    width: auto;
+    margin: 0 auto 40px;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+  }
 
-.calculator {
-  flex: 1 1 500px;
-}
-
-.seo-info {
-  max-width: 1000px;
-  margin: 60px auto 0;
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
-  line-height: 1.6;
-}
-
-.seo-info h2 {
-  margin-top: 0;
-  color: #007bff;
+  body {
+    padding-bottom: 140px;
+  }
 }
 
 @media (max-width: 768px) {
   .main-layout {
     flex-direction: column;
-  }
-}
+   
