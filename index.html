@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kalkulator podatku Belki</title>
+  <title>Kalkulatory finansowe - podatek Belki i oszczędności</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="main-layout">
+
     <div class="calculator">
       <div class="container">
         <h1>Kalkulator podatku Belki</h1>
@@ -27,6 +28,28 @@
         <button onclick="oblicz()">Oblicz</button>
 
         <div id="wynik"></div>
+      </div>
+    </div>
+
+    <div class="calculator">
+      <div class="container">
+        <h1>Kalkulator oszczędności</h1>
+
+        <label for="miesieczna-wplata">Miesięczna wpłata (PLN):
+          <input type="number" id="miesieczna-wplata" placeholder="np. 500" />
+        </label>
+
+        <label for="oprocentowanie-oszczednosci">Oprocentowanie (% rocznie):
+          <input type="number" id="oprocentowanie-oszczednosci" placeholder="np. 4" />
+        </label>
+
+        <label for="okres-oszczednosci">Okres oszczędzania (miesiące):
+          <input type="number" id="okres-oszczednosci" placeholder="np. 24" />
+        </label>
+
+        <button onclick="obliczOszczednosci()">Oblicz oszczędności</button>
+
+        <div id="wynik-oszczednosci"></div>
       </div>
     </div>
 
@@ -53,24 +76,20 @@
     </div>
   </div>
 
-  <section class="belka-info">
-    <h2>Jak obliczyć podatek Belki?</h2>
-    <p>
-      Podatek Belki to potoczne określenie podatku od zysków kapitałowych, który w Polsce wynosi 19%. Dotyczy on m.in. odsetek z lokat bankowych, zysków z giełdy, funduszy inwestycyjnych czy obligacji.
-    </p>
-    <p>
-      Aby obliczyć podatek Belki, należy pomnożyć osiągnięty zysk przez 0,19. Przykład: jeśli zarobiłeś 1000 zł z inwestycji, zapłacisz 190 zł podatku.
-    </p>
-    <p>
-      Podatek jest automatycznie pobierany przez instytucje finansowe, jednak w przypadku zagranicznych brokerów lub nietypowych inwestycji, konieczne może być jego samodzielne rozliczenie w zeznaniu PIT.
-    </p>
-    <p>
-      Nasz kalkulator pozwala szybko i wygodnie sprawdzić, ile wynosi należny podatek od Twojego zysku.
-    </p>
+  <section class="seo-info">
+    <h2>Co warto wiedzieć o podatku Belki?</h2>
+    <p>Podatek Belki to podatek od zysków kapitałowych w Polsce, wynoszący 19%. Obciąża zyski z lokat bankowych, funduszy inwestycyjnych, obligacji i innych inwestycji.</p>
+    <p>Nasz kalkulator pomaga szybko obliczyć, ile podatku zapłacisz od swoich zysków. To ważne, by świadomie planować inwestycje i nie mieć niespodzianek w rozliczeniach podatkowych.</p>
+
+    <h2>Jak działa kalkulator oszczędności?</h2>
+    <p>Ten kalkulator pozwala oszacować, ile zaoszczędzisz, regularnie odkładając określoną kwotę co miesiąc, przy podanym oprocentowaniu i czasie oszczędzania.</p>
+    <p>Uwzględnia miesięczną kapitalizację odsetek, dzięki czemu możesz zobaczyć, jak rosną Twoje oszczędności dzięki efektowi procentu składanego.</p>
+
+    <h2>Dlaczego warto oszczędzać regularnie?</h2>
+    <p>Regularne oszczędzanie to jeden z najprostszych sposobów budowania finansowej poduszki bezpieczeństwa. Nawet niewielkie wpłaty, ale systematyczne, z czasem przynoszą wymierne korzyści.</p>
+    <p>Dzięki naszemu kalkulatorowi łatwo zaplanujesz swoje cele finansowe i zobaczysz, jak może wyglądać przyszłość Twoich oszczędności.</p>
   </section>
 
   <script src="script.js"></script>
 </body>
-
 </html>
-
