@@ -2,121 +2,102 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kalkulatory Finansowe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Twoje Kalkulatory Finansowe — szybkie, proste, skuteczne</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 class="page-title">Kalkulatory Finansowe</h1>
-
   <div class="main-layout">
-    <!-- Lewy panel – Kalkulatory -->
-    <div class="left-panel">
-      <div class="calculator fadeInUp" id="kalkulator1">
-        <h2>Kalkulator rat kredytu</h2>
-        <label>
-          Kwota kredytu:
-          <input type="number" id="kwota" />
-        </label>
-        <label>
-          Oprocentowanie (%):
-          <input type="number" id="oprocentowanie" />
-        </label>
-        <label>
-          Ilość rat (miesięcy):
-          <input type="number" id="raty" />
-        </label>
-        <button onclick="obliczRate()">Oblicz</button>
-        <p id="wynik1"></p>
-      </div>
+    <div class="calculator">
+      <div class="container">
+        <h1>Twoje Kalkulatory Finansowe — szybkie, proste, skuteczne</h1>
 
-      <div class="calculator fadeInUp" id="kalkulator2">
-        <h2>Kalkulator oszczędności</h2>
-        <label>
-          Kwota startowa:
-          <input type="number" id="startowa" />
-        </label>
-        <label>
-          Roczne oprocentowanie (%):
-          <input type="number" id="procent" />
-        </label>
-        <label>
-          Ilość lat:
-          <input type="number" id="lata" />
-        </label>
-        <button onclick="obliczOszczednosci()">Oblicz</button>
-        <p id="wynik2"></p>
-      </div>
-    </div>
+        <section class="calc-box" id="calc-belka">
+          <h2>Kalkulator podatku Belki</h2>
+          <label for="kwota">Kwota inwestycji (PLN):
+            <input type="number" id="kwota" placeholder="np. 10000" />
+          </label>
+          <label for="oprocentowanie">Oprocentowanie (% rocznie):
+            <input type="number" id="oprocentowanie" placeholder="np. 5" />
+          </label>
+          <label for="czas">Czas trwania inwestycji (miesiące):
+            <input type="number" id="czas" placeholder="np. 12" />
+          </label>
+          <button onclick="oblicz()">Oblicz</button>
+          <div id="wynik"></div>
+        </section>
 
-    <!-- Środkowy panel – Treści SEO -->
-    <div class="middle-panel">
-      <div class="seo-block" id="seo-kalkulator1">
-        <h3>Oblicz swoją ratę kredytu</h3>
-        <p>Użyj naszego kalkulatora kredytowego, aby szybko dowiedzieć się, jaka będzie Twoja miesięczna rata przy zadanej kwocie, oprocentowaniu i liczbie rat.</p>
-      </div>
+        <section class="calc-box" id="calc-oszczednosci">
+          <h2>Kalkulator oszczędności z kapitalizacją miesięczną</h2>
+          <label for="miesieczna-wplata">Miesięczna wpłata (PLN):
+            <input type="number" id="miesieczna-wplata" placeholder="np. 500" />
+          </label>
+          <label for="oprocentowanie-oszczednosci">Oprocentowanie (% rocznie):
+            <input type="number" id="oprocentowanie-oszczednosci" placeholder="np. 5" />
+          </label>
+          <label for="okres-oszczednosci">Okres oszczędzania (miesiące):
+            <input type="number" id="okres-oszczednosci" placeholder="np. 24" />
+          </label>
+          <button onclick="obliczOszczednosci()">Oblicz</button>
+          <div id="wynik-oszczednosci"></div>
+        </section>
 
-      <div class="seo-block" id="seo-kalkulator2">
-        <h3>Jak oszczędzać efektywnie</h3>
-        <p>Dzięki kalkulatorowi oszczędności dowiesz się, ile możesz zgromadzić kapitału dzięki regularnym wpłatom i korzystnemu oprocentowaniu. Rozpocznij oszczędzanie już dziś!</p>
-      </div>
-
-      <div class="seo-block align-kredyt" id="seo-kredyt">
-        <h3>Kredyty i finansowanie</h3>
-        <p>Porównaj różne opcje kredytowe, zanim zdecydujesz się na zaciągnięcie zobowiązania. Skorzystaj z narzędzi, które pomogą Ci znaleźć najlepsze warunki kredytu gotówkowego lub hipotecznego.</p>
+        <section class="calc-box" id="calc-kredyt">
+          <h2>Kalkulator raty kredytu (raty równe)</h2>
+          <label for="kwota-kredytu">Kwota kredytu (PLN):
+            <input type="number" id="kwota-kredytu" placeholder="np. 200000" />
+          </label>
+          <label for="oprocentowanie-kredytu">Oprocentowanie (% rocznie):
+            <input type="number" id="oprocentowanie-kredytu" placeholder="np. 7" />
+          </label>
+          <label for="okres-kredytu">Okres spłaty (miesiące):
+            <input type="number" id="okres-kredytu" placeholder="np. 120" />
+          </label>
+          <button onclick="obliczRateKredytu()">Oblicz</button>
+          <div id="wynik-kredyt"></div>
+        </section>
       </div>
     </div>
 
-    <!-- Prawy panel – Oferty afiliacyjne -->
-    <div class="right-panel">
-      <h3>Sprawdź oferty inwestycyjne:</h3>
-      <div class="partner-links">
-        <div class="partner">
-          <a href="https://example.com" target="_blank">
-            <img src="https://via.placeholder.com/45" alt="Partner 1" />
-            <span>Partner 1</span>
-          </a>
-        </div>
-        <div class="partner">
-          <a href="https://example.com" target="_blank">
-            <img src="https://via.placeholder.com/45" alt="Partner 2" />
-            <span>Partner 2</span>
-          </a>
-        </div>
-        <div class="partner">
-          <a href="https://example.com" target="_blank">
-            <img src="https://via.placeholder.com/45" alt="Partner 3" />
-            <span>Partner 3</span>
-          </a>
-        </div>
+    <div class="partner-links">
+      <h2>Sprawdź oferty inwestycyjne:</h2>
+      <div class="partner">
+        <a href="https://twoj-link-partnerski1.pl" target="_blank">    
+          <img src="https://logo.clearbit.com/xtb.com" alt="XTB" />
+          <span>Zainwestuj w ETF-y z XTB</span>
+        </a>
+      </div>
+      <div class="partner">
+        <a href="https://twoj-link-partnerski2.pl" target="_blank">
+          <img src="https://logo.clearbit.com/bankmillennium.pl" alt="Millennium Bank" />
+          <span>Lokaty z wysokim oprocentowaniem</span>
+        </a>
+      </div>
+      <div class="partner">
+        <a href="https://twoj-link-partnerski3.pl" target="_blank">
+          <img src="https://logo.clearbit.com/aliorbank.pl" alt="Alior Bank" />
+          <span>Najlepsze konta oszczędnościowe 2025</span>
+        </a>
       </div>
     </div>
   </div>
 
-  <script>
-    function obliczRate() {
-      const kwota = parseFloat(document.getElementById("kwota").value);
-      const oprocentowanie = parseFloat(document.getElementById("oprocentowanie").value) / 100 / 12;
-      const raty = parseInt(document.getElementById("raty").value);
-      if (!kwota || !oprocentowanie || !raty) {
-        document.getElementById("wynik1").innerText = "Uzupełnij wszystkie pola.";
-        return;
-      }
-      const rata = (kwota * oprocentowanie) / (1 - Math.pow(1 + oprocentowanie, -raty));
-      document.getElementById("wynik1").innerText = `Miesięczna rata: ${rata.toFixed(2)} zł`;
-    }
+  <section class="belka-info">
+    <h2>Jak obliczyć podatek Belki?</h2>
+    <p>
+      Podatek Belki to potoczne określenie podatku od zysków kapitałowych, który w Polsce wynosi 19%. Dotyczy on m.in. odsetek z lokat bankowych, zysków z giełdy, funduszy inwestycyjnych czy obligacji.
+    </p>
+    <p>
+      Aby obliczyć podatek Belki, należy pomnożyć osiągnięty zysk przez 0,19. Przykład: jeśli zarobiłeś 1000 zł z inwestycji, zapłacisz 190 zł podatku.
+    </p>
+    <p>
+      Podatek jest automatycznie pobierany przez instytucje finansowe, jednak w przypadku zagranicznych brokerów lub nietypowych inwestycji, konieczne może być jego samodzielne rozliczenie w zeznaniu PIT.
+    </p>
+    <p>
+      Nasz kalkulator pozwala szybko i wygodnie sprawdzić, ile wynosi należny podatek od Twojego zysku.
+    </p>
+  </section>
 
-    function obliczOszczednosci() {
-      const startowa = parseFloat(document.getElementById("startowa").value);
-      const procent = parseFloat(document.getElementById("procent").value) / 100;
-      const lata = parseInt(document.getElementById("lata").value);
-      if (!startowa || !procent || !lata) {
-        document.getElementById("wynik2").innerText = "Uzupełnij wszystkie pola.";
-        return;
-      }
-      const koncowa = startowa * Math.pow(1 + procent, lata);
-      document.getElementById("wynik2").innerText = `Zgromadzone oszczędności: ${koncowa.toFixed(2)} zł`;
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
