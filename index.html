@@ -3,22 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kalkulator podatku Belki</title>
+  <title>Kalkulator Belki</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 40px;
-      max-width: 500px;
+      max-width: 600px;
       margin: auto;
     }
     h1 {
       color: #0066cc;
     }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
     input, button {
       padding: 10px;
       font-size: 16px;
-      margin-top: 10px;
       width: 100%;
+      margin-top: 5px;
     }
     #wynik {
       margin-top: 20px;
@@ -28,22 +32,6 @@
 </head>
 <body>
   <h1>Kalkulator podatku Belki</h1>
-  <label for="zysk">Zysk kapitałowy (PLN):</label>
-  <input type="number" id="zysk" placeholder="np. 1000" />
-  <button onclick="obliczBelke()">Oblicz podatek</button>
-  <div id="wynik"></div>
 
-  <script>
-    function obliczBelke() {
-      const zysk = parseFloat(document.getElementById("zysk").value);
-      if (isNaN(zysk) || zysk <= 0) {
-        document.getElementById("wynik").innerText = "Podaj poprawną kwotę zysku.";
-        return;
-      }
-      const podatek = zysk * 0.19;
-      document.getElementById("wynik").innerText = `Podatek Belki: ${podatek.toFixed(2)} PLN`;
-    }
-  </script>
-  <script src="script.js"></script>
-</body>
-</html>
+  <label for="kwota">Kwota inwestycji (PLN):</label>
+  <input type="number" id="kwota" placeholde
