@@ -2,329 +2,202 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kalkulatory finansowe</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalkulator inwestycyjny</title>
   <style>
-    /* Styl przeniesiony z style.css */
     body {
-      font-family: Arial, sans-serif;
-      background: #d9e9ff url('https://www.transparenttextures.com/patterns/blueprint.png');
-      color: #003366;
-      margin: 0;
-      padding: 20px 40px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f2f6fa;
+      padding: 20px;
+      color: #333;
     }
 
-    .page-title {
+    h1, h2 {
       text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      color: #007bff;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 900;
     }
 
-    .main-layout {
-      display: flex;
-      gap: 40px;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: flex-start;
-    }
-
-    .left-panel, .middle-panel, .right-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-
-    .left-panel { flex: 0 0 480px; }
-    .middle-panel { flex: 1 1 400px; }
-    .right-panel { flex: 0 0 300px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 3px 18px rgba(0,0,0,0.07); }
-
-    .calculator, .seo-block {
+    .calculator, .partner-links {
+      max-width: 700px;
+      margin: 40px auto;
       background: white;
-      padding: 25px 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.07);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      animation: fadeInUp 0.8s ease-out;
     }
 
-    .calculator h2, .seo-block h3 {
-      color: #007bff;
-      margin-top: 0;
-      font-weight: 700;
-    }
-
-    .calculator input, .calculator button {
-      width: 100%;
-      padding: 8px;
-      margin-top: 5px;
-      font-size: 1rem;
-      border-radius: 6px;
-    }
-
-    .calculator button {
-      background: #007bff;
-      color: white;
-      font-weight: bold;
-      border: none;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-
-    .partner a {
+    .form-row {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
       gap: 10px;
-      text-decoration: none;
-      color: #222;
-      font-weight: bold;
     }
 
-    .partner img {
-      width: 45px;
-      height: 45px;
+    .form-row label {
+      flex: 1;
+      font-weight: 600;
+    }
+
+    .form-row input {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 1rem;
+      border: 2px solid #ccc;
       border-radius: 6px;
+    }
+
+    .result {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #006400;
+    }
+
+    .partner-links {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .partner-card {
+      background: #f9f9f9;
+      border-radius: 12px;
+      display: flex;
+      gap: 16px;
+      padding: 15px 20px;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease;
+    }
+
+    .partner-card:hover {
+      transform: scale(1.02);
+    }
+
+    .partner-card img {
+      width: 55px;
+      height: 55px;
+      border-radius: 8px;
       object-fit: contain;
     }
 
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
+    .partner-info {
+      flex: 1;
     }
 
-    .popup-box {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      max-width: 400px;
+    .partner-info h4 {
+      margin: 0 0 5px;
+      font-size: 1.1rem;
+      color: #003366;
     }
 
-    .popup-close {
-      float: right;
-      cursor: pointer;
+    .partner-info p {
+      margin: 0 0 10px;
+      font-size: 0.95rem;
+      color: #444;
     }
-    .partner-links {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
 
-.partner-card {
-  background: #f9f9f9;
-  border-radius: 12px;
-  display: flex;
-  gap: 16px;
-  padding: 15px 20px;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  transition: transform 0.3s ease;
-}
+    .partner-button {
+      display: inline-block;
+      padding: 8px 14px;
+      background-color: #007bff;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background-color 0.3s;
+    }
 
-.partner-card:hover {
-  transform: scale(1.02);
-}
+    .partner-button:hover {
+      background-color: #0056b3;
+    }
 
-.partner-card img {
-  width: 55px;
-  height: 55px;
-  border-radius: 8px;
-  object-fit: contain;
-}
-
-.partner-info {
-  flex: 1;
-}
-
-.partner-info h4 {
-  margin: 0 0 5px;
-  font-size: 1.1rem;
-  color: #003366;
-}
-
-.partner-info p {
-  margin: 0 0 10px;
-  font-size: 0.95rem;
-  color: #444;
-}
-
-.partner-button {
-  display: inline-block;
-  padding: 8px 14px;
-  background-color: #007bff;
-  color: white;
-  font-weight: bold;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: background-color 0.3s;
-}
-
-.partner-button:hover {
-  background-color: #0056b3;
-}
-
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
-  <h1 class="page-title">Kalkulatory finansowe</h1>
+  <h1>Kalkulator inwestycyjny</h1>
 
-  <div class="main-layout">
-    <div class="left-panel">
-      <div class="calculator">
-        <h2>Kalkulator podatku Belki</h2>
-        <label>Kwota inwestycji: <input type="number" id="kwota" /></label>
-        <label>Oprocentowanie (%): <input type="number" id="oprocentowanie" /></label>
-        <label>Czas (miesiące): <input type="number" id="czas" /></label>
-        <button onclick="obliczBelke()">Oblicz</button>
-        <div id="wynik"></div>
-      </div>
-
-      <div class="calculator">
-        <h2>Kalkulator oszczędności</h2>
-        <label>Miesięczna wpłata: <input type="number" id="miesieczna-wplata" /></label>
-        <label>Oprocentowanie (%): <input type="number" id="oprocentowanie-oszczednosci" /></label>
-        <label>Okres (miesiące): <input type="number" id="okres-oszczednosci" /></label>
-        <button onclick="obliczOszczednosci()">Oblicz</button>
-        <div id="wynik-oszczednosci"></div>
-        <canvas id="wykres-oszczednosci"></canvas>
-      </div>
-
-      <div class="calculator">
-        <h2>Kalkulator kredytowy</h2>
-        <label>Kwota kredytu: <input type="number" id="kwota-kredytu" /></label>
-        <label>Oprocentowanie (%): <input type="number" id="oprocentowanie-kredytu" /></label>
-        <label>Okres (miesiące): <input type="number" id="okres-kredytu" /></label>
-        <button onclick="obliczRateKredytu()">Oblicz</button>
-        <div id="wynik-kredyt"></div>
-        <canvas id="wykres-kredyt"></canvas>
-      </div>
+  <div class="calculator">
+    <h2>Kalkulator zysku z inwestycji</h2>
+    <div class="form-row">
+      <label for="kwota">Kwota inwestycji (PLN):</label>
+      <input type="number" id="kwota" placeholder="np. 10000" />
     </div>
-
-    <div class="middle-panel">
-      <div class="seo-block">
-        <h3>Jak działa podatek Belki?</h3>
-        <p>Podatek Belki wynosi 19% i dotyczy zysków kapitałowych...</p>
-      </div>
-      <div class="seo-block">
-        <h3>Efektywne oszczędzanie</h3>
-        <p>Oszczędzaj systematycznie z procentem składanym...</p>
-      </div>
-      <div class="seo-block">
-        <h3>Planowanie kredytu</h3>
-        <p>Zobacz ile zapłacisz miesięcznie i porównaj oferty...</p>
-      </div>
+    <div class="form-row">
+      <label for="oprocentowanie">Oprocentowanie roczne (%):</label>
+      <input type="number" id="oprocentowanie" placeholder="np. 5" />
     </div>
-
-    <div class="right-panel">
-      <h2>Sprawdź oferty:</h2>
-<div class="partner-links">
-  <div class="partner-card">
-    <img src="https://logo.clearbit.com/xtb.com" alt="XTB" />
-    <div class="partner-info">
-      <h4>XTB</h4>
-      <p>Zainwestuj w ETF-y bez prowizji. Prosty start i aplikacja mobilna.</p>
-      <a href="https://twoj-link-partnerski1.pl" target="_blank" class="partner-button">Zainwestuj z XTB</a>
+    <div class="form-row">
+      <label for="lata">Liczba lat:</label>
+      <input type="number" id="lata" placeholder="np. 3" />
     </div>
+    <div class="result" id="wynik">Wynik pojawi się tutaj</div>
   </div>
 
-  <div class="partner-card">
-    <img src="https://logo.clearbit.com/bankmillennium.pl" alt="Millennium" />
-    <div class="partner-info">
-      <h4>Millennium Bank</h4>
-      <p>Lokaty z wysokim oprocentowaniem — załóż konto online w 5 minut!</p>
-      <a href="https://twoj-link-partnerski2.pl" target="_blank" class="partner-button">Sprawdź ofertę</a>
+  <div class="partner-links">
+    <div class="partner-card">
+      <img src="https://logo.clearbit.com/xtb.com" alt="XTB" />
+      <div class="partner-info">
+        <h4>XTB</h4>
+        <p>Zainwestuj w ETF-y bez prowizji. Prosty start i aplikacja mobilna.</p>
+        <a href="https://twoj-link-partnerski1.pl" target="_blank" class="partner-button">Zainwestuj z XTB</a>
+      </div>
     </div>
-  </div>
 
-  <div class="partner-card">
-    <img src="https://logo.clearbit.com/aliorbank.pl" alt="Alior Bank" />
-    <div class="partner-info">
-      <h4>Alior Bank</h4>
-      <p>Najlepsze konta oszczędnościowe 2025 z premią za otwarcie.</p>
-      <a href="https://twoj-link-partnerski3.pl" target="_blank" class="partner-button">Załóż konto</a>
+    <div class="partner-card">
+      <img src="https://logo.clearbit.com/bankmillennium.pl" alt="Millennium" />
+      <div class="partner-info">
+        <h4>Millennium Bank</h4>
+        <p>Lokaty z wysokim oprocentowaniem — załóż konto online w 5 minut!</p>
+        <a href="https://twoj-link-partnerski2.pl" target="_blank" class="partner-button">Sprawdź ofertę</a>
+      </div>
     </div>
-  </div>
-</div>
 
-
-  <div id="popup" class="popup-overlay">
-    <div class="popup-box">
-      <span class="popup-close" onclick="closePopup()">×</span>
-      <h2>💸 Zgarnij 650 zł za konto Millennium!</h2>
-      <p>Załóż Konto 360° i odbierz do 650 zł premii!</p>
-      <a href="https://twoj-link-afiliacyjny.pl" target="_blank" class="popup-button">Zgarnij premię →</a>
+    <div class="partner-card">
+      <img src="https://logo.clearbit.com/aliorbank.pl" alt="Alior Bank" />
+      <div class="partner-info">
+        <h4>Alior Bank</h4>
+        <p>Najlepsze konta oszczędnościowe 2025 z premią za otwarcie.</p>
+        <a href="https://twoj-link-partnerski3.pl" target="_blank" class="partner-button">Załóż konto</a>
+      </div>
     </div>
   </div>
 
   <script>
-    function closePopup() {
-      document.getElementById('popup').style.display = 'none';
-    }
-    window.addEventListener('load', () => {
-      setTimeout(() => document.getElementById('popup').style.display = 'flex', 3000);
-    });
+    const kwota = document.getElementById('kwota');
+    const oprocentowanie = document.getElementById('oprocentowanie');
+    const lata = document.getElementById('lata');
+    const wynik = document.getElementById('wynik');
 
-    function obliczBelke() {
-      const k = parseFloat(document.getElementById('kwota').value);
-      const o = parseFloat(document.getElementById('oprocentowanie').value);
-      const c = parseInt(document.getElementById('czas').value);
-      if (k > 0 && o > 0 && c > 0) {
-        const zysk = k * (o / 100) * (c / 12);
-        const podatek = zysk * 0.19;
-        document.getElementById('wynik').textContent = `Zysk netto: ${(zysk - podatek).toFixed(2)} PLN`;
+    function obliczZysk() {
+      const P = parseFloat(kwota.value);
+      const r = parseFloat(oprocentowanie.value) / 100;
+      const t = parseFloat(lata.value);
+
+      if (!isNaN(P) && !isNaN(r) && !isNaN(t)) {
+        const wynikKwota = (P * Math.pow(1 + r, t)).toFixed(2);
+        wynik.textContent = `Zysk po ${t} latach: ${wynikKwota} PLN`;
+      } else {
+        wynik.textContent = 'Wprowadź poprawne dane';
       }
     }
 
-    let wykresOszczednosci, wykresKredyt;
-
-    function obliczOszczednosci() {
-      const wp = parseFloat(document.getElementById('miesieczna-wplata').value);
-      const o = parseFloat(document.getElementById('oprocentowanie-oszczednosci').value);
-      const ok = parseInt(document.getElementById('okres-oszczednosci').value);
-      const ms = o / 100 / 12;
-      let saldo = 0, dane = [], etykiety = [];
-      for (let i = 1; i <= ok; i++) {
-        saldo = (saldo + wp) * (1 + ms);
-        dane.push(saldo.toFixed(2));
-        etykiety.push(`Miesiąc ${i}`);
-      }
-      document.getElementById('wynik-oszczednosci').textContent = `Saldo końcowe: ${saldo.toFixed(2)} PLN`;
-      if (wykresOszczednosci) wykresOszczednosci.destroy();
-      wykresOszczednosci = new Chart(document.getElementById('wykres-oszczednosci'), {
-        type: 'line', data: { labels: etykiety, datasets: [{ label: 'Oszczędności', data: dane, borderColor: 'blue', fill: true }] },
-        options: { responsive: true, scales: { y: { beginAtZero: true } } }
-      });
-    }
-
-    function obliczRateKredytu() {
-      const k = parseFloat(document.getElementById('kwota-kredytu').value);
-      const o = parseFloat(document.getElementById('oprocentowanie-kredytu').value);
-      const ok = parseInt(document.getElementById('okres-kredytu').value);
-      const ms = o / 100 / 12;
-      const rata = (k * ms) / (1 - Math.pow(1 + ms, -ok));
-      document.getElementById('wynik-kredyt').textContent = `Rata: ${rata.toFixed(2)} PLN`;
-      let suma = 0, dane = [], etykiety = [];
-      for (let i = 1; i <= ok; i++) {
-        suma += rata;
-        dane.push(suma.toFixed(2));
-        etykiety.push(`Miesiąc ${i}`);
-      }
-      if (wykresKredyt) wykresKredyt.destroy();
-      wykresKredyt = new Chart(document.getElementById('wykres-kredyt'), {
-        type: 'line', data: { labels: etykiety, datasets: [{ label: 'Łączne raty', data: dane, borderColor: 'green', fill: false }] },
-        options: { responsive: true, scales: { y: { beginAtZero: true } } }
-      });
-    }
+    kwota.addEventListener('input', obliczZysk);
+    oprocentowanie.addEventListener('input', obliczZysk);
+    lata.addEventListener('input', obliczZysk);
   </script>
 </body>
 </html>
