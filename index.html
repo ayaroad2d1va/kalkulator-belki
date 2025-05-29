@@ -2,134 +2,224 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kalkulatory finansowe</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kalkulatory finansowe: podatek Belki, oszczędności i raty kredytu." />
+  <title>Kalkulatory Finansowe</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/810/810092.png" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    .main-layout {
+      display: flex;
+      padding: 1rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .left-panel, .right-panel {
+      flex: 1;
+      min-width: 300px;
+    }
+    .calculator {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+    label, input {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+    input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background: #0077cc;
+      color: white;
+      padding: 0.6rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+    button:hover {
+      background: #005fa3;
+    }
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .right-panel {
+      position: sticky;
+      top: 20px;
+    }
+    canvas {
+      margin-top: 1rem;
+      background: white;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+  </style>
 </head>
 <body>
-  <div class="background-layer"></div>
-
+  <header>
+    <h1>Kalkulatory Finansowe</h1>
+  </header>
   <div class="main-layout">
-    <!-- Twoje kalkulatory, seo, etc. -->
-  </div>
-  <h1 class="page-title">Kalkulatory finansowe</h1>
-
-  <div class="main-layout">
-
     <div class="left-panel">
-      <div class="calculator fadeInUp" id="calc-belka">
-        <h2>Kalkulator podatku Belki</h2>
-
-        <label for="kwota">Kwota inwestycji (PLN):
-          <input type="number" id="kwota" placeholder="np. 10000" />
-        </label>
-
-        <label for="oprocentowanie">Oprocentowanie (% rocznie):
-          <input type="number" id="oprocentowanie" placeholder="np. 5" />
-        </label>
-
-        <label for="czas">Czas trwania inwestycji (miesiące):
-          <input type="number" id="czas" placeholder="np. 12" />
-        </label>
-
-        <button onclick="oblicz()">Oblicz</button>
-        <div id="wynik"></div>
+      <!-- Kalkulator podatku Belki -->
+      <div class="calculator">
+        <h2>Podatek Belki</h2>
+        <label>Kwota: <input type="number" id="kwota" required min="1" /></label>
+        <label>Oprocentowanie (%): <input type="number" id="oprocentowanie" required min="0" /></label>
+        <label>Czas (lata): <input type="number" id="czas" required min="1" /></label>
+        <button onclick="obliczBelke()">Oblicz</button>
+        <div class="result" id="wynik-belki"></div>
       </div>
 
-      <div class="calculator fadeInUp" id="calc-oszczednosci">
-        <h2>Kalkulator oszczędności</h2>
-
-        <label for="miesieczna-wplata">Miesięczna wpłata (PLN):
-          <input type="number" id="miesieczna-wplata" placeholder="np. 500" />
-        </label>
-
-        <label for="oprocentowanie-oszczednosci">Oprocentowanie (% rocznie):
-          <input type="number" id="oprocentowanie-oszczednosci" placeholder="np. 4" />
-        </label>
-
-        <label for="okres-oszczednosci">Okres oszczędzania (miesiące):
-          <input type="number" id="okres-oszczednosci" placeholder="np. 24" />
-        </label>
-
+      <!-- Kalkulator oszczędności -->
+      <div class="calculator">
+        <h2>Oszczędności</h2>
+        <label>Miesięczna wpłata: <input type="number" id="miesieczna-wplata" /></label>
+        <label>Oprocentowanie (%): <input type="number" id="oprocentowanie-oszczednosci" /></label>
+        <label>Czas (miesiące): <input type="number" id="okres" /></label>
         <button onclick="obliczOszczednosci()">Oblicz</button>
-        <div id="wynik-oszczednosci"></div>
-        <canvas id="wykres-oszczednosci" width="400" height="200"></canvas>
-
+        <div class="result" id="wynik-oszczednosci"></div>
       </div>
 
-      <div class="calculator fadeInUp" id="calc-kredyt">
-        <h2>Kalkulator raty kredytu</h2>
-
-        <label for="kwota-kredytu">Kwota kredytu (PLN):
-          <input type="number" id="kwota-kredytu" placeholder="np. 100000" />
-        </label>
-
-        <label for="oprocentowanie-kredytu">Oprocentowanie (% rocznie):
-          <input type="number" id="oprocentowanie-kredytu" placeholder="np. 7" />
-        </label>
-
-        <label for="okres-kredytu">Okres kredytowania (miesiące):
-          <input type="number" id="okres-kredytu" placeholder="np. 60" />
-        </label>
-
-        <button onclick="obliczRateKredytu()">Oblicz</button>
-        <div id="wynik-kredyt"></div>
+      <!-- Kalkulator kredytu -->
+      <div class="calculator">
+        <h2>Rata Kredytu</h2>
+        <label>Kwota kredytu: <input type="number" id="kredyt-kwota" /></label>
+        <label>Oprocentowanie (%): <input type="number" id="kredyt-oprocentowanie" /></label>
+        <label>Czas (lata): <input type="number" id="kredyt-lata" /></label>
+        <button onclick="obliczRate()">Oblicz</button>
+        <div class="result" id="wynik-kredytu"></div>
+        <canvas id="wykresKredytu" width="400" height="200"></canvas>
       </div>
     </div>
 
-    <div class="middle-panel">
-      <div class="seo-block fadeIn" id="seo-belka">
-        <h3>Podatek Belki - co warto wiedzieć?</h3>
-        <p>Podatek Belki to podatek od zysków kapitałowych, który wynosi 19%. Dotyczy odsetek z lokat bankowych, funduszy inwestycyjnych, giełdy i innych inwestycji. Znajomość tego podatku pomaga lepiej planować inwestycje i maksymalizować zyski netto. Bądź świadomy i oszczędzaj mądrze.</p>
+    <!-- Panel ofert -->
+    <div class="right-panel">
+      <div class="calculator">
+        <h2>Oferty Finansowe</h2>
+        <ul>
+          <li>Konto Oszczędnościowe 7% – Bank X</li>
+          <li>Kredyt Hipoteczny 5,5% – Bank Y</li>
+          <li>Lokata 6% – Bank Z</li>
+        </ul>
       </div>
-
-      <div class="seo-block fadeIn" id="seo-oszczednosci">
-        <h3>Jak oszczędzać efektywnie?</h3>
-        <p>Regularne oszczędzanie z kapitalizacją odsetek pozwala zbudować solidny kapitał. Pamiętaj, że czas to Twój sprzymierzeniec — im dłużej oszczędzasz, tym większy zysk. Dyscyplina i cierpliwość w regularnym oszczędzaniu systematycznie zwiększają Twój końcowy finansowy zysk.</p>
-      </div>
-
-      <div class="seo-block fadeIn" id="seo-kredyt">
-        <h3>Kredyty i finansowanie</h3>
-        <p>Planowanie rat kredytów jest ważne, aby nie obciążać domowego budżetu. Nasz kalkulator raty kredytu pozwoli Ci ocenić, ile zapłacisz co miesiąc.</p>
-      </div>
-    </div>
-    <div class="right-panel fadeIn">
-      <h2>Sprawdź oferty inwestycyjne:</h2>
-      <div class="partner-links">
-        <div class="partner">
-          <a href="https://twoj-link-partnerski1.pl" target="_blank">
-            <img src="https://logo.clearbit.com/xtb.com" alt="XTB" />
-            <span>Zainwestuj w ETF-y z XTB</span>
-          </a>
-        </div>
-        <div class="partner">
-          <a href="https://twoj-link-partnerski2.pl" target="_blank">
-            <img src="https://logo.clearbit.com/bankmillennium.pl" alt="Millennium Bank" />
-            <span>Lokaty z wysokim oprocentowaniem</span>
-          </a>
-        </div>
-        <div class="partner">
-          <a href="https://twoj-link-partnerski3.pl" target="_blank">
-            <img src="https://logo.clearbit.com/aliorbank.pl" alt="Alior Bank" />
-            <span>Najlepsze konta oszczędnościowe 2025</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- === POPUP PROMOCYJNY: Konto Millennium 360° === -->
-  <div id="popup" class="popup-overlay">
-    <div class="popup-box">
-      <span class="popup-close" onclick="closePopup()">×</span>
-      <h2>💸 Zgarnij 650 zł za konto w Millennium!</h2>
-      <p>Załóż darmowe Konto 360° online i odbierz nawet <strong>650 zł premii</strong> za transakcje kartą, BLIKiem i logowania w aplikacji.</p>
-      <a href="https://twoj-link-afiliacyjny.pl" target="_blank" class="popup-button">Zgarnij premię →</a>
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    // Podatek Belki
+    function obliczBelke() {
+      const kwota = parseFloat(document.getElementById('kwota').value);
+      const oprocentowanie = parseFloat(document.getElementById('oprocentowanie').value);
+      const czas = parseFloat(document.getElementById('czas').value);
+
+      const zyskBrutto = kwota * Math.pow(1 + (oprocentowanie / 100), czas) - kwota;
+      const podatek = zyskBrutto * 0.19;
+      const zyskNetto = zyskBrutto - podatek;
+
+      document.getElementById('wynik-belki').innerText = 
+        `Zysk netto: ${zyskNetto.toFixed(2)} PLN (podatek: ${podatek.toFixed(2)} PLN)`;
+
+      localStorage.setItem('kwota', kwota);
+      localStorage.setItem('oprocentowanie', oprocentowanie);
+      localStorage.setItem('czas', czas);
+    }
+
+    // Oszczędności
+    function obliczOszczednosci() {
+      const miesiecznaWplata = parseFloat(document.getElementById('miesieczna-wplata').value);
+      const oprocentowanie = parseFloat(document.getElementById('oprocentowanie-oszczednosci').value);
+      const okres = parseInt(document.getElementById('okres').value);
+
+      let saldo = 0;
+      for (let i = 0; i < okres; i++) {
+        saldo += miesiecznaWplata;
+        saldo *= 1 + (oprocentowanie / 100 / 12);
+      }
+
+      const lacznaWplata = miesiecznaWplata * okres;
+      const zysk = saldo - lacznaWplata;
+
+      document.getElementById('wynik-oszczednosci').innerHTML = 
+        `Oszczędności po ${okres} miesiącach: ${saldo.toFixed(2)} PLN<br/>
+         Łączna wpłata: ${lacznaWplata.toFixed(2)} PLN<br/>
+         Zysk: ${zysk.toFixed(2)} PLN`;
+    }
+
+    // Rata kredytu i wykres
+    function obliczRate() {
+      const kwota = parseFloat(document.getElementById('kredyt-kwota').value);
+      const oprocentowanie = parseFloat(document.getElementById('kredyt-oprocentowanie').value) / 100 / 12;
+      const miesiace = parseInt(document.getElementById('kredyt-lata').value) * 12;
+
+      const rata = (kwota * oprocentowanie) / (1 - Math.pow(1 + oprocentowanie, -miesiace));
+      const calkowitaKwota = rata * miesiace;
+
+      document.getElementById('wynik-kredytu').innerText = 
+        `Miesięczna rata: ${rata.toFixed(2)} PLN, Łącznie do spłaty: ${calkowitaKwota.toFixed(2)} PLN`;
+
+      // Wykres
+      const labels = Array.from({ length: miesiace }, (_, i) => i + 1);
+      const dane = labels.map(() => rata.toFixed(2));
+      const ctx = document.getElementById('wykresKredytu').getContext('2d');
+
+      if (window.kredytChart) {
+        window.kredytChart.destroy();
+      }
+
+      window.kredytChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Miesięczna rata (PLN)',
+            data: dane,
+            borderColor: '#0077cc',
+            backgroundColor: 'rgba(0, 119, 204, 0.1)',
+            tension: 0.2
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            title: { display: true, text: 'Symulacja spłat rat kredytu' }
+          },
+          scales: {
+            x: { title: { display: true, text: 'Numer raty' } },
+            y: { title: { display: true, text: 'Kwota (PLN)' } }
+          }
+        }
+      });
+    }
+
+    // Przywracanie danych z localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('kwota').value = localStorage.getItem('kwota') || '';
+      document.getElementById('oprocentowanie').value = localStorage.getItem('oprocentowanie') || '';
+      document.getElementById('czas').value = localStorage.getItem('czas') || '';
+    });
+  </script>
 </body>
 </html>
